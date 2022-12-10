@@ -1,0 +1,132 @@
+@import "../utils/variables";
+
+@mixin display {
+  font-family: $fontFraunces;
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: bold;
+}
+
+@mixin body {
+  font-family: $fontMontserrat;
+  font-size: 14px;
+  line-height: 23px;
+  font-weight: 500;
+  color: $aurometalSaurus;
+}
+
+@mixin overline {
+  font-family: $fontMontserrat;
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+@mixin button-text {
+  font-family: $fontMontserrat;
+  font-weight: bold;
+  font-size: 14px;
+  color: $pureWhite;
+}
+
+$responsiveBreakpoint: 610px;
+$mobileWidth: 343px;
+$mobileHeight: 611px;
+
+.ProductPreview {
+  width: 620px;
+  height: 450px;
+  background-color: $pureWhite;
+  border-radius: 10px;
+
+  display: flex;
+
+  @media ( max-width: $responsiveBreakpoint ) {
+    flex-direction: column;
+    width: $mobileWidth;
+    height: $mobileHeight;
+  }
+
+  &__info {
+    padding: 32px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: $responsiveBreakpoint) {
+      padding: 25px;
+    }
+  }
+
+  &__image {
+    &--vertical {
+      max-height: 100%;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    &--horizontal {
+      max-width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  }
+
+  &__category {
+    @include overline;
+  }
+
+  &__name {
+    @include display;
+  }
+
+  &__description {
+    @include body;
+  }
+
+  &__add-to-cart {
+    border: none;
+    background-color: $deepAquamarine;
+    padding: 15px 0;
+    width: 100%;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    & svg {
+      & path {
+        fill: $pureWhite;
+      }
+    }
+
+    & span {
+      @include button-text;
+    }
+
+    &:hover {
+      background-color: $deepAquamarineHover;
+    }
+  }
+}
+
+.ProductPreviewPrices {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &__current {
+    @include display;
+    color: $deepAquamarine;
+  }
+
+  &__discount {
+    @include body;
+    font-size: 13px;
+    text-decoration: line-through;
+  }
+}
